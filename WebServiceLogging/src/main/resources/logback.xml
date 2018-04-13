@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- https://logback.qos.ch/manual/filters.html#evalutatorFilter -->
+        <filter class="ch.qos.logback.core.filter.EvaluatorFilter">
+            <!-- https://logback.qos.ch/manual/appenders.html#OnMarkerEvaluator -->
+            <evaluator class="ch.qos.logback.classic.boolex.OnMarkerEvaluator">
+                <marker>WS_PROFILE</marker>
+                <!-- you specify add as many markers as you want -->
+            </evaluator>
+            <OnMismatch>DENY</OnMismatch>
+            <OnMatch>NEUTRAL</OnMatch>
+        </filter>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="debug">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>
